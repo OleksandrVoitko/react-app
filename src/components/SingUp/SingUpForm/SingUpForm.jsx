@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import authOperations from "../../../redux/auth/authOperations";
+import register from "../../../redux/auth/authOperations";
 import { singUp } from "../../../servises/auth-services";
 // import { TailSpin } from "react-loader-spinner";
 // import { useCreateContactMutation } from "../../../redux/phoneBook/contacts";
@@ -12,6 +15,8 @@ const SingUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+
+  const dispatch = useDispatch();
   // const [createContact, { isLoading }] = useCreateContactMutation();
 
   useEffect(() => {
@@ -22,15 +27,16 @@ const SingUpForm = () => {
     }
   }, [login, email, password]);
 
-  const handleChange = (e) => {
-    if (e.target.id === "login") {
-      setLogin(e.target.value);
-    }
-    if (e.target.id === "email") {
-      setEmail(e.target.value);
-    }
-    if (e.target.id === "password") {
-      setPassword(e.target.value);
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case "login":
+        return setLogin(value);
+      case "email":
+        return setEmail(value);
+      case "password":
+        return setPassword(value);
+      default:
+        return;
     }
   };
 
@@ -44,16 +50,17 @@ const SingUpForm = () => {
       name: login,
       email,
       password,
-      avatar: "https://picsum.photos/800",
     };
 
-    singUp(newUser)
-      .then(() => {
-        console.log(`singUp - OK`);
-      })
-      .catch((error) => {
-        console.log(`singUp - Error`, error.message);
-      });
+    dispatch(authOperations.register(newUser));
+
+    // singUp(newUser)
+    //   .then(() => {
+    //     console.log(`singUp - OK`);
+    //   })
+    //   .catch((error) => {
+    //     console.log(`singUp - Error`, error.message);
+    //   });
 
     setLogin("");
     setEmail("");
@@ -81,7 +88,7 @@ const SingUpForm = () => {
   return (
     <Forma onSubmit={handleSubmit}>
       <Label htmlFor="login">
-        Login
+        Name
         <Input
           type="text"
           id="login"
@@ -89,7 +96,7 @@ const SingUpForm = () => {
           value={login}
           onChange={handleChange}
           minLength="2"
-          placeholder="Enter login..."
+          placeholder="Enter your name..."
           required
           // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           // title="Login may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"

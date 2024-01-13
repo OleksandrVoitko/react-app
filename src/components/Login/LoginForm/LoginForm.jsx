@@ -1,28 +1,31 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import authOperations from "../../../redux/auth/authOperations";
 // import { TailSpin } from "react-loader-spinner";
 // import { useCreateContactMutation } from "../../../redux/phoneBook/contacts";
 
 import { Button, Forma, Input, Label } from "./LoginForm.styled";
 
 const LoginForm = () => {
-  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
   // const [createContact, { isLoading }] = useCreateContactMutation();
 
   useEffect(() => {
-    if (login && password) {
+    if (email && password) {
       setVisible(true);
     } else {
       setVisible(false);
     }
-  }, [login, password]);
+  }, [email, password]);
 
   const handleChange = (e) => {
-    if (e.target.id === "login") {
-      setLogin(e.target.value);
+    if (e.target.id === "email") {
+      setEmail(e.target.value);
     } else {
       setPassword(e.target.value);
     }
@@ -30,8 +33,15 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`login: ${login} /=<>=/ password: ${password}`);
-    setLogin("");
+
+    const user = {
+      email,
+      password,
+    };
+
+    dispatch(authOperations.logIn(user));
+
+    setEmail("");
     setPassword("");
 
     // const newContact = {
@@ -55,15 +65,16 @@ const LoginForm = () => {
 
   return (
     <Forma onSubmit={handleSubmit}>
-      <Label htmlFor="login">
-        Login
+      <Label htmlFor="email">
+        E-mail
         <Input
           type="text"
-          id="login"
-          value={login}
+          id="email"
+          name="email"
+          value={email}
           onChange={handleChange}
           minLength="2"
-          placeholder="Enter login..."
+          placeholder="Enter e-mail..."
           required
           // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           // title="Login may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -75,6 +86,7 @@ const LoginForm = () => {
         <Input
           type="text"
           id="password"
+          name="password"
           value={password}
           onChange={handleChange}
           minLength="8"

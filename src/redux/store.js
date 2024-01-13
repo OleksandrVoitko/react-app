@@ -11,12 +11,14 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { authReducer } from "./auth/authSlice";
 
 export const store = configureStore({
   reducer: {
     tasks: tasksReducer,
     filters: filterReducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

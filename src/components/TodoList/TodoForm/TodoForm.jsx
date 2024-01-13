@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { addTask } from "../../../redux/todoList/tasksSlice";
@@ -27,6 +27,7 @@ const TodoForm = () => {
     toast.success(`Todo added!`, {
       position: toast.POSITION.TOP_RIGHT,
     });
+    console.log("toas");
     setValue("");
   };
 
