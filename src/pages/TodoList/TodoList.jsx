@@ -8,7 +8,7 @@ import TaskList from '../../components/TodoList/TaskList';
 
 import TodoCounter from '../../components/TodoList/TodoCounter';
 import TodoForm from '../../components/TodoList/TodoForm';
-import contactsOperations from '../../redux/phoneBook/contactsOperations';
+import contactsOperations from '../../redux/contacts/contactsOperations';
 
 const TodoList = () => {
   const dispatch = useDispatch();

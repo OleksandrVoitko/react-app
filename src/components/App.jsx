@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { lazy } from 'react';
 
 // import Contacts from '../pages/Contacts/Contacts';
@@ -12,7 +12,9 @@ import { lazy } from 'react';
 
 import routes from '../routes';
 import authOperations from '../redux/auth/authOperations';
-import PrivateRoute from './rederect/PrivateRoute';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import { Loader } from './Loader/Loader';
+// import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const SharedLoyout = lazy(() => import('../pages/SharedLoyout'));
 const Home = lazy(() => import('../pages/Home'));
@@ -28,17 +30,25 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path={routes.home} element={<SharedLoyout />}>
-        <Route index element={<Home />} />
-        <Route path={routes.contacts} element={<Contacts />} />
-        <Route path="todo-list" element={<TodoList />} />
-        <Route path={routes.singUp} element={<SingUp />} />
-        <Route path={routes.login} element={<Login />} />
-
-        <PrivateRoute path="todo-list"></PrivateRoute>
-      </Route>
-    </Routes>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path={routes.home} element={<SharedLoyout />}>
+          <Route index element={<Home />} />
+          <Route path={routes.contacts} element={<Contacts />} />
+          {/* <Route path="todo-list" element={<TodoList />} /> */}
+          <Route
+            path="todo-list"
+            element={
+              <PrivateRoute>
+                <TodoList />
+              </PrivateRoute>
+            }
+          />
+          <Route path={routes.singUp} element={<SingUp />} />
+          <Route path={routes.login} element={<Login />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

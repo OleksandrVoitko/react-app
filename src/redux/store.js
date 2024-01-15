@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { contactsApi } from './phoneBook/contacts';
+import { contactsApi } from './contacts/contacts';
 import { filterReducer } from './todoList/filterSlice';
 import { tasksReducer } from './todoList/tasksSlice';
 import {
@@ -12,7 +12,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
-import { contactsReducer } from './phoneBook/contactsSlice';
+import { contactsReducer } from './contacts/contactsSlice';
 
 export const store = configureStore({
   reducer: {

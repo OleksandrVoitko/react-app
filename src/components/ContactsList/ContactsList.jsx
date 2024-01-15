@@ -1,13 +1,25 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
-import { useFetchContactsQuery } from '../../redux/phoneBook/contacts';
+// import { useFetchContactsQuery } from '../../redux/contacts/contacts';
 import Contact from '../Contact/Contact';
 import { Wrapper, Li, Ul } from './ContactsList.styled';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import contactsSelector from '../../redux/contacts/contactsSelector';
+import contactsOperations from '../../redux/contacts/contactsOperations';
 
 const ContactsList = ({ setNumberOfContacts, setNumberOfFilteredContacts }) => {
-  const { isLoading, data: contacts } = useFetchContactsQuery();
+  const dispatch = useDispatch();
+  const contacts = useSelector(contactsSelector.getContacts);
+  const isLoading = useSelector(contactsSelector.getIsLoading);
+  console.log(contacts);
+  // const { isLoading, data: contacts } = useFetchContactsQuery();
   const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    dispatch(contactsOperations.fetchContacts());
+  }, [dispatch]);
 
   useEffect(() => {
     let filterValue = '';

@@ -1,30 +1,36 @@
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { TailSpin } from 'react-loader-spinner';
-import { useCreateContactMutation } from '../../redux/phoneBook/contacts';
+// import { TailSpin } from 'react-loader-spinner';
+// import { useCreateContactMutation } from '../../redux/contacts/contacts';
 
 import { Button, Forma, Input, Label } from './ContactForm.styled';
+import { useDispatch } from 'react-redux';
+// import { useSelector } from 'react-redux';
+// import contactsSelector from '../../redux/contacts/contactsSelector';
+import contactsOperations from '../../redux/contacts/contactsOperations';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const [visible, setVisible] = useState(false);
-  const [createContact, { isLoading }] = useCreateContactMutation();
+  const dispatch = useDispatch();
+  // const isLoading = useSelector(contactsSelector.getIsLoading);
+  // const [createContact, { isLoading }] = useCreateContactMutation();
 
   useEffect(() => {
-    if (name && phone) {
+    if (name && number) {
       setVisible(true);
     } else {
       setVisible(false);
     }
-  }, [name, phone]);
+  }, [name, number]);
 
   const handleChange = e => {
     if (e.target.id === 'name') {
       setName(e.target.value);
     } else {
-      setPhone(e.target.value);
+      setNumber(e.target.value);
     }
   };
 
@@ -33,16 +39,17 @@ const ContactForm = () => {
 
     const newContact = {
       name,
-      number: phone,
+      number,
     };
 
     try {
-      await createContact(newContact);
+      await dispatch(contactsOperations.createContact(newContact));
+      // createContact(newContact);
       toast.success(`Contact: ${name} - added!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
       setName('');
-      setPhone('');
+      setNumber('');
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_RIGHT,
@@ -67,29 +74,25 @@ const ContactForm = () => {
         />
       </Label>
 
-      <Label htmlFor="phone">
-        Phone
+      <Label htmlFor="number">
+        Number
         <Input
           type="tel"
-          id="phone"
-          value={phone}
+          id="number"
+          value={number}
           onChange={handleChange}
           minLength="2"
-          placeholder="Enter phone..."
+          placeholder="Enter number..."
           required
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          title="number number must be digits and can contain spaces, dashes, parentheses and can start with +"
         />
       </Label>
-      <div>
-        {isLoading ? (
-          <TailSpin color="orangered" height={53} width={53} />
-        ) : (
-          <Button type="submit" disabled={!visible}>
-            Add
-          </Button>
-        )}
-      </div>
+
+      <Button type="submit" disabled={!visible}>
+        Add
+      </Button>
+
       <ToastContainer autoClose={2500} />
     </Forma>
   );

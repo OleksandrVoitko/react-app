@@ -1,17 +1,24 @@
 import { MdClose } from 'react-icons/md';
-import { useDeleteContactMutation } from '../../redux/phoneBook/contacts';
+// import { useDeleteContactMutation } from '../../redux/contacts/contacts';
 import { toast } from 'react-toastify';
 
 import { TailSpin } from 'react-loader-spinner';
 
 import { Button, DivWrapper, PText } from './Contacts.styled';
+import { useDispatch } from 'react-redux';
+import contactsOperations from '../../redux/contacts/contactsOperations';
+import { useSelector } from 'react-redux';
+import contactsSelector from '../../redux/contacts/contactsSelector';
 
 const Contact = ({ contact }) => {
-  const [deleteContact, { isLoading }] = useDeleteContactMutation();
+  const dispatch = useDispatch();
+  const isLoading = useSelector(contactsSelector.getIsLoading);
+  // const [deleteContact, { isLoading }] = useDeleteContactMutation();
 
   const hadleClick = async id => {
     try {
-      await deleteContact(id);
+      await dispatch(contactsOperations.deleteContact(id));
+      // deleteContact(id);
       toast.success(`Contact: ${contact.name} - deleted!`);
     } catch (error) {
       toast.error(error.message);

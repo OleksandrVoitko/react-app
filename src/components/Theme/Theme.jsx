@@ -1,11 +1,9 @@
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from 'styled-components';
 
-const theme = {
-  colors: { accentColor: "orange" },
+export const theme = {
+  colors: { accentColor: 'orange' },
 };
 
-const Theme = () => {
+export const Theme = () => {
   <ThemeProvider theme={theme}></ThemeProvider>;
 };
-
-export default Theme;
