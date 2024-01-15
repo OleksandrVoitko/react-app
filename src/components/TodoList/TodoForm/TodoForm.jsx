@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-import { addTask } from "../../../redux/todoList/tasksSlice";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { addTask } from '../../../redux/todoList/tasksSlice';
 
-import { Input, Label, Forma, Button } from "./TodoForm.styled";
+import { Input, Label, Forma, Button } from './TodoForm.styled';
 
 const TodoForm = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
@@ -20,18 +20,18 @@ const TodoForm = () => {
     }
   }, [value]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     dispatch(addTask(value));
     toast.success(`Todo added!`, {
       position: toast.POSITION.TOP_RIGHT,
     });
-    console.log("toas");
-    setValue("");
+    console.log('toas');
+    setValue('');
   };
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setValue(e.target.value);
   };
 
@@ -52,7 +52,7 @@ const TodoForm = () => {
           Add
         </Button>
       </div>
-      <ToastContainer />
+      <ToastContainer autoClose={2500} />
     </Forma>
   );
 };

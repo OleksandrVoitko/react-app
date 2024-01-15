@@ -1,24 +1,27 @@
-import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
-import { TailSpin } from "react-loader-spinner";
-import { Container, Header, Logo, NavigationLink } from "./SharedLoyout.styled";
-import UserMenu from "../../components/UserMenu";
-import { useSelector } from "react-redux";
-import authSelectors from "../../redux/auth/authSelectors";
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
+import { Container, Header, Logo, NavigationLink } from './SharedLoyout.styled';
+import UserMenu from '../../components/UserMenu';
+import { useSelector } from 'react-redux';
+import authSelectors from '../../redux/auth/authSelectors';
+import routes from '../../routes';
 
 const SharedLoyout = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggetIn);
-  const state = useSelector((state) => state);
-  console.log("state", state);
+
   return (
     <Container>
       <Header>
         <Logo>
-          <span>React</span> App
+          <span>Phone</span>book
         </Logo>
         <nav>
-          <NavigationLink to="/" end>
-            Phone book
+          <NavigationLink to={routes.home} end>
+            Home
+          </NavigationLink>
+          <NavigationLink to={routes.contacts} end>
+            Contacts
           </NavigationLink>
           <NavigationLink to="/todo-list" end>
             Todo List
@@ -28,11 +31,11 @@ const SharedLoyout = () => {
           <UserMenu />
         ) : (
           <nav>
-            <NavigationLink to="/login" end>
-              Login
-            </NavigationLink>
-            <NavigationLink to="/sing-up" end>
+            <NavigationLink to={routes.singUp} end>
               SingUp
+            </NavigationLink>
+            <NavigationLink to={routes.login} end>
+              Login
             </NavigationLink>
           </nav>
         )}

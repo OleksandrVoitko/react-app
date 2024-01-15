@@ -1,23 +1,23 @@
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { TailSpin } from "react-loader-spinner";
-import { useFetchContactsQuery } from "../../../redux/phoneBook/contacts";
-import Contact from "../Contact/Contact";
-import { Wrapper, Li, Ul } from "./ContactsList.styled";
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
+import { useFetchContactsQuery } from '../../redux/phoneBook/contacts';
+import Contact from '../Contact/Contact';
+import { Wrapper, Li, Ul } from './ContactsList.styled';
 
 const ContactsList = ({ setNumberOfContacts, setNumberOfFilteredContacts }) => {
   const { isLoading, data: contacts } = useFetchContactsQuery();
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    let filterValue = "";
-    if (searchParams.get("filter")) {
-      filterValue = searchParams.get("filter");
+    let filterValue = '';
+    if (searchParams.get('filter')) {
+      filterValue = searchParams.get('filter');
     }
 
     if (Array.isArray(contacts)) {
-      const filteredContacts = contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(filterValue.toLowerCase())
+      const filteredContacts = contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filterValue.toLowerCase()),
       );
 
       setNumberOfContacts(contacts.length);
@@ -31,20 +31,20 @@ const ContactsList = ({ setNumberOfContacts, setNumberOfFilteredContacts }) => {
     setNumberOfFilteredContacts,
   ]);
 
-  const getFilterValue = (searchParams) => {
-    if (searchParams.get("filter")) {
-      return searchParams.get("filter");
+  const getFilterValue = searchParams => {
+    if (searchParams.get('filter')) {
+      return searchParams.get('filter');
     } else {
-      return "";
+      return '';
     }
   };
 
-  const getFilteredContacts = (contacts) => {
+  const getFilteredContacts = contacts => {
     if (Array.isArray(contacts)) {
-      const filteredContacts = contacts.filter((contact) =>
+      const filteredContacts = contacts.filter(contact =>
         contact.name
           .toLowerCase()
-          .includes(getFilterValue(searchParams).toLowerCase())
+          .includes(getFilterValue(searchParams).toLowerCase()),
       );
 
       return filteredContacts;
@@ -60,7 +60,7 @@ const ContactsList = ({ setNumberOfContacts, setNumberOfFilteredContacts }) => {
       </div>
       <Ul>
         {getFilteredContacts(contacts) &&
-          getFilteredContacts(contacts).map((contact) => (
+          getFilteredContacts(contacts).map(contact => (
             <Li key={contact.id}>
               <Contact contact={contact} />
             </Li>

@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-import { TailSpin } from "react-loader-spinner";
-import { useCreateContactMutation } from "../../../redux/phoneBook/contacts";
+import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { TailSpin } from 'react-loader-spinner';
+import { useCreateContactMutation } from '../../redux/phoneBook/contacts';
 
-import { Button, Forma, Input, Label } from "./ContactForm.styled";
+import { Button, Forma, Input, Label } from './ContactForm.styled';
 
 const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [visible, setVisible] = useState(false);
   const [createContact, { isLoading }] = useCreateContactMutation();
 
@@ -20,15 +20,15 @@ const ContactForm = () => {
     }
   }, [name, phone]);
 
-  const handleChange = (e) => {
-    if (e.target.id === "name") {
+  const handleChange = e => {
+    if (e.target.id === 'name') {
       setName(e.target.value);
     } else {
       setPhone(e.target.value);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const newContact = {
@@ -41,8 +41,8 @@ const ContactForm = () => {
       toast.success(`Contact: ${name} - added!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
-      setName("");
-      setPhone("");
+      setName('');
+      setPhone('');
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_RIGHT,
@@ -90,7 +90,7 @@ const ContactForm = () => {
           </Button>
         )}
       </div>
-      <ToastContainer />
+      <ToastContainer autoClose={2500} />
     </Forma>
   );
 };

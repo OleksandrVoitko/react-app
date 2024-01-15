@@ -1,4 +1,4 @@
-import SingUpForm from "../../components/SingUp/SingUpForm";
+import SingUpForm from "../../components/SingUpForm";
 
 const SingUp = () => {
   return (

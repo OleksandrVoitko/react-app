@@ -1,13 +1,13 @@
-import { MdClose } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
+import { MdClose } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import {
   deleteTask,
   toggleCompleted,
-} from "../../../redux/todoList/tasksSlice";
+} from '../../../redux/todoList/tasksSlice';
 
-import { Button, DivWrapper, InputCheckbox, PText } from "./Task.styled";
+import { Button, DivWrapper, InputCheckbox, PText } from './Task.styled';
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Task = ({ task }) => {
       <Button disabled={!task.completed} onClick={handleClick}>
         <MdClose size={24} />
       </Button>
-      <ToastContainer />
+      <ToastContainer autoClose={2500} />
     </DivWrapper>
   );
 };
