@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { TailSpin } from 'react-loader-spinner';
+
 // import { useFetchContactsQuery } from '../../redux/contacts/contacts';
 import Contact from '../Contact/Contact';
 import { Wrapper, Li, Ul } from './ContactsList.styled';
@@ -8,12 +8,13 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import contactsSelector from '../../redux/contacts/contactsSelector';
 import contactsOperations from '../../redux/contacts/contactsOperations';
+import { Loader } from '../Loader/Loader';
 
 const ContactsList = ({ setNumberOfContacts, setNumberOfFilteredContacts }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelector.getContacts);
   const isLoading = useSelector(contactsSelector.getIsLoading);
-  console.log(contacts);
+
   // const { isLoading, data: contacts } = useFetchContactsQuery();
   const [searchParams] = useSearchParams();
 
@@ -67,9 +68,7 @@ const ContactsList = ({ setNumberOfContacts, setNumberOfFilteredContacts }) => {
 
   return (
     <Wrapper>
-      <div>
-        {isLoading && <TailSpin color="orangered" height={53} width={53} />}
-      </div>
+      <div>{isLoading && <Loader />}</div>
       <Ul>
         {getFilteredContacts(contacts) &&
           getFilteredContacts(contacts).map(contact => (

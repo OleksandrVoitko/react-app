@@ -20,7 +20,7 @@ import PublicRoute from './PublicRoute/PublicRoute';
 const SharedLoyout = lazy(() => import('../pages/SharedLoyout'));
 const Home = lazy(() => import('../pages/Home'));
 const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
-const TodoList = lazy(() => import('../pages/TodoList/TodoList'));
+// const TodoList = lazy(() => import('../pages/TodoList/TodoList'));
 const Login = lazy(() => import('../pages/Login'));
 const SingUp = lazy(() => import('../pages/SingUp'));
 
@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path={routes.home} element={<SharedLoyout />}>
           <Route index element={<Home />} />
-          {/* <Route path={routes.contacts} element={<Contacts />} /> */}
+          <Route path={routes.contacts} element={<Contacts />} />
           {/* <Route path="todo-list" element={<TodoList />} /> */}
           <Route
             path={routes.contacts}
