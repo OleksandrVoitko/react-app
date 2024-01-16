@@ -1,5 +1,5 @@
-import { useSearchParams } from "react-router-dom";
-import { TextP } from "./ContactCounter.styled";
+import { useSearchParams } from 'react-router-dom';
+import { TextP, Wraper } from './ContactCounter.styled';
 
 const ContactCounter = ({
   numberOfContacts,
@@ -8,7 +8,7 @@ const ContactCounter = ({
 }) => {
   const [searchParams] = useSearchParams();
   let filteredValue = 0;
-  if (searchParams.get("filter")) {
+  if (searchParams.get('filter')) {
     filteredValue = numberOfFilteredContacts;
   }
   // const getFilteredValue = (searchParams) => {
@@ -20,7 +20,7 @@ const ContactCounter = ({
   // };
 
   return (
-    <div>
+    <Wraper>
       <TextP>
         Total - <span>{numberOfContacts}</span>
       </TextP>
@@ -29,7 +29,7 @@ const ContactCounter = ({
           Filtered - <span>{filteredValue}</span>
         </TextP>
       )}
-    </div>
+    </Wraper>
   );
 };
 

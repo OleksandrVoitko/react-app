@@ -1,5 +1,4 @@
 const getContacts = state => state.contacts.contacts;
-
 const getIsLoading = state => state.contacts.isLoading;
 const getError = state => state.contacts.error;
 

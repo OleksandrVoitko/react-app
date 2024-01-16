@@ -4,7 +4,4 @@ export default {
   contacts: 'contacts',
   singUp: 'sing-up',
   login: 'login',
-  contactsNav: '/contacts',
-  singUpNav: '/sing-up',
-  loginNav: '/login',
 };
