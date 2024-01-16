@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path={routes.home} element={<SharedLoyout />}>
           <Route index element={<Home />} />
-          <Route path={routes.contacts} element={<Contacts />} />
+          {/* <Route path={routes.contacts} element={<Contacts />} /> */}
           {/* <Route path="todo-list" element={<TodoList />} /> */}
           <Route
             path={routes.contacts}

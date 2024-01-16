@@ -6,5 +6,5 @@ import routes from '../../routes';
 
 export default function PublicRoute({ children }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggetIn);
-  return isLoggedIn ? <Navigate to={routes.contacts} /> : children;
+  return isLoggedIn ? <Navigate to={routes.contactsNav} /> : children;
 }

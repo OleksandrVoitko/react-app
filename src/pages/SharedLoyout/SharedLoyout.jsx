@@ -26,9 +26,10 @@ const SharedLoyout = () => {
               <span>Phone</span>book
             </Logo>
           </NavigationLogo>
-          {isLoggedIn && (
+          <NavigationLink to={routes.contacts}>Contacts</NavigationLink>
+          {/* {isLoggedIn && (
             <NavigationLink to={routes.contacts}>Contacts</NavigationLink>
-          )}
+          )} */}
         </nav>
 
         {isLoggedIn ? (
