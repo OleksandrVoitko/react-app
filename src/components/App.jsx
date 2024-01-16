@@ -14,6 +14,7 @@ import routes from '../routes';
 import authOperations from '../redux/auth/authOperations';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { Loader } from './Loader/Loader';
+import PublicRoute from './PublicRoute/PublicRoute';
 // import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const SharedLoyout = lazy(() => import('../pages/SharedLoyout'));
@@ -34,17 +35,33 @@ function App() {
       <Routes>
         <Route path={routes.home} element={<SharedLoyout />}>
           <Route index element={<Home />} />
-          <Route path={routes.contacts} element={<Contacts />} />
+          {/* <Route path={routes.contacts} element={<Contacts />} /> */}
           {/* <Route path="todo-list" element={<TodoList />} /> */}
           <Route
-            path="todo-list"
+            path={routes.contacts}
             element={
               <PrivateRoute>
-                <TodoList />
+                <Contacts />
               </PrivateRoute>
             }
           />
-          <Route path={routes.singUp} element={<SingUp />} />
+          <Route
+            path={routes.singUp}
+            element={
+              <PublicRoute>
+                <SingUp />
+              </PublicRoute>
+            }
+          ></Route>
+          {/* <Route path={routes.singUp} element={<SingUp />} /> */}
+          <Route
+            path={routes.login}
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          ></Route>
           <Route path={routes.login} element={<Login />} />
         </Route>
       </Routes>

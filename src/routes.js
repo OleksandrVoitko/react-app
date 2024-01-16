@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 export default {
   home: '/',
-  contacts: 'contacts',
+  contacts: '/contacts',
   singUp: '/sing-up',
   login: '/login',
 };
