@@ -13,6 +13,7 @@ export const BleackSpan = styled.span`
 
 export const Text = styled.p`
   margin-bottom: 40px;
+  color: #4c527d;
 `;
 
 export const IconWraper = styled.div`

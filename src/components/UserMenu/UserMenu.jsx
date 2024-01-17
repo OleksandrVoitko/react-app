@@ -4,12 +4,13 @@ import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
 import {
   AvatarImg,
-  LogOutButton,
   NameSpan,
   WelcomSpan,
+  LogOutButton,
   Wraper,
   WraperAvatarDiv,
 } from './UserMenu.styled';
+import Button from '../Button';
 
 const UserMenu = () => {
   const name = useSelector(authSelectors.getUserName);
@@ -27,14 +28,22 @@ const UserMenu = () => {
       <WelcomSpan>
         Welcome, - <NameSpan>{name}</NameSpan>
       </WelcomSpan>
-      <LogOutButton
+      <Button
+        type="button"
+        title="Log out"
+        aria-label="Log out"
+        handleClick={() => dispatch(authOperations.logOut())}
+      >
+        LogOut
+      </Button>
+      {/* <LogOutButton
         type="button"
         title="Log out"
         aria-label="Log out"
         onClick={() => dispatch(authOperations.logOut())}
       >
         LogOut
-      </LogOutButton>
+      </LogOutButton> */}
     </Wraper>
   );
 };

@@ -1,9 +1,9 @@
-import { ButtonStyle } from "./Button.styled";
+import { ButtonStyle } from './Button.styled';
 
 const Button = ({
   handleClick,
   selected = false,
-  type = "button",
+  type = 'button',
   children,
 }) => {
   return (
