@@ -32,6 +32,7 @@ const UserMenu = () => {
         type="button"
         title="Log out"
         aria-label="Log out"
+        padding="4"
         handleClick={() => dispatch(authOperations.logOut())}
       >
         LogOut

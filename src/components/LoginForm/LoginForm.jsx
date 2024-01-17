@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 // import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-import authOperations from "../../redux/auth/authOperations";
+import 'react-toastify/dist/ReactToastify.min.css';
+import authOperations from '../../redux/auth/authOperations';
+import Button from '../Button';
 // import { TailSpin } from "react-loader-spinner";
 // import { useCreateContactMutation } from "../../../redux/phoneBook/contacts";
 
-import { Button, Forma, Input, Label } from "./LoginForm.styled";
+import { Forma, Input, Label } from './LoginForm.styled';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   // const [createContact, { isLoading }] = useCreateContactMutation();
@@ -23,15 +24,15 @@ const LoginForm = () => {
     }
   }, [email, password]);
 
-  const handleChange = (e) => {
-    if (e.target.id === "email") {
+  const handleChange = e => {
+    if (e.target.id === 'email') {
       setEmail(e.target.value);
     } else {
       setPassword(e.target.value);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const user = {
@@ -41,8 +42,8 @@ const LoginForm = () => {
 
     dispatch(authOperations.logIn(user));
 
-    setEmail("");
-    setPassword("");
+    setEmail('');
+    setPassword('');
 
     // const newContact = {
     //   name,
@@ -107,6 +108,9 @@ const LoginForm = () => {
         <Button type="submit" disabled={!visible}>
           Add
         </Button>
+        {/* <Button type="submit" disabled={!visible}>
+          Add
+        </Button> */}
       </div>
       {/* <ToastContainer /> */}
     </Forma>

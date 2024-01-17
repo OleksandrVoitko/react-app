@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-// import { TailSpin } from 'react-loader-spinner';
-// import { useCreateContactMutation } from '../../redux/contacts/contacts';
 
-import { Button, Forma, Input, Label } from './ContactForm.styled';
-import { useDispatch } from 'react-redux';
-// import { useSelector } from 'react-redux';
-// import contactsSelector from '../../redux/contacts/contactsSelector';
 import contactsOperations from '../../redux/contacts/contactsOperations';
+import Button from '../Button';
+
+import { Forma, Input, Label } from './ContactForm.styled';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  // const isLoading = useSelector(contactsSelector.getIsLoading);
-  // const [createContact, { isLoading }] = useCreateContactMutation();
 
   useEffect(() => {
     if (name && number) {
@@ -44,7 +40,7 @@ const ContactForm = () => {
 
     try {
       await dispatch(contactsOperations.createContact(newContact));
-      // createContact(newContact);
+
       toast.success(`Contact: ${name} - added!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -85,7 +81,7 @@ const ContactForm = () => {
           placeholder="Enter number..."
           required
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="number number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          title="Number must be digits and can contain spaces, dashes, parentheses and can start with +"
         />
       </Label>
 

@@ -16,14 +16,14 @@ export const AvatarImg = styled.img`
   border-radius: 50%;
   opacity: 1;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+  /* cursor: pointer; */
 
-  &:hover,
+  /* &:hover,
   &:focus {
     opacity: 0.8;
 
     transition: opacity opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
+  } */
 `;
 
 export const WelcomSpan = styled.span`
