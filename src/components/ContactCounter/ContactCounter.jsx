@@ -11,13 +11,6 @@ const ContactCounter = ({
   if (searchParams.get('filter')) {
     filteredValue = numberOfFilteredContacts;
   }
-  // const getFilteredValue = (searchParams) => {
-  //   if (searchParams.get("filter")) {
-  //     return numberOfFilteredContacts;
-  //   } else {
-  //     return 0;
-  //   }
-  // };
 
   return (
     <Wraper>

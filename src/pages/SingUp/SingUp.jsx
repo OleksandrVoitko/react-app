@@ -1,11 +1,13 @@
-import SingUpForm from "../../components/SingUpForm";
+import Loyout from '../../components/Loyout';
+import SingUpForm from '../../components/SingUpForm';
+import Title from '../../components/Title';
 
 const SingUp = () => {
   return (
-    <div>
-      <h3>SingUp</h3>
+    <Loyout>
+      <Title>Sing up</Title>
       <SingUpForm />
-    </div>
+    </Loyout>
   );
 };
 

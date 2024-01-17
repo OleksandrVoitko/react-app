@@ -6,7 +6,6 @@ import {
   AvatarImg,
   NameSpan,
   WelcomSpan,
-  LogOutButton,
   Wraper,
   WraperAvatarDiv,
 } from './UserMenu.styled';
@@ -37,14 +36,6 @@ const UserMenu = () => {
       >
         LogOut
       </Button>
-      {/* <LogOutButton
-        type="button"
-        title="Log out"
-        aria-label="Log out"
-        onClick={() => dispatch(authOperations.logOut())}
-      >
-        LogOut
-      </LogOutButton> */}
     </Wraper>
   );
 };

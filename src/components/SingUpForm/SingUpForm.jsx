@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import authOperations from '../../redux/auth/authOperations';
 import Button from '../Button';
-import { Forma, Input, Label } from './SingUpForm.styled';
+import { Forma, Input, Label, WraperDiv } from './SingUpForm.styled';
 
 const SingUpForm = () => {
   const [login, setLogin] = useState('');
@@ -53,6 +53,7 @@ const SingUpForm = () => {
   return (
     <Forma onSubmit={handleSubmit}>
       <Label htmlFor="login">
+        <span></span>
         Name
         <Input
           type="text"
@@ -66,7 +67,7 @@ const SingUpForm = () => {
         />
       </Label>
       <Label htmlFor="email">
-        E-mail
+        <span>E-mail</span>
         <Input
           type="text"
           id="email"
@@ -80,7 +81,7 @@ const SingUpForm = () => {
       </Label>
 
       <Label htmlFor="password">
-        Password
+        <span>Password</span>
         <Input
           type="text"
           id="password"
@@ -92,11 +93,11 @@ const SingUpForm = () => {
           required
         />
       </Label>
-      <div>
+      <WraperDiv>
         <Button type="submit" disabled={!visible}>
-          Add
+          Sing up
         </Button>
-      </div>
+      </WraperDiv>
     </Forma>
   );
 };

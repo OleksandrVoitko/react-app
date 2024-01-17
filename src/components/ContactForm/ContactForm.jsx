@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import contactsOperations from '../../redux/contacts/contactsOperations';
 import Button from '../Button';
 
-import { Forma, Input, Label } from './ContactForm.styled';
+import { Forma, Input, Label, Span, WraperDiv } from './ContactForm.styled';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -56,7 +56,7 @@ const ContactForm = () => {
   return (
     <Forma onSubmit={handleSubmit}>
       <Label htmlFor="name">
-        Name
+        <Span>Name:</Span>
         <Input
           type="text"
           id="name"
@@ -65,13 +65,11 @@ const ContactForm = () => {
           minLength="2"
           placeholder="Enter name..."
           required
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         />
       </Label>
 
       <Label htmlFor="number">
-        Number
+        <Span>Number:</Span>
         <Input
           type="tel"
           id="number"
@@ -80,14 +78,13 @@ const ContactForm = () => {
           minLength="2"
           placeholder="Enter number..."
           required
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Number must be digits and can contain spaces, dashes, parentheses and can start with +"
         />
       </Label>
-
-      <Button type="submit" disabled={!visible}>
-        Add
-      </Button>
+      <WraperDiv>
+        <Button type="submit" disabled={!visible}>
+          Add
+        </Button>
+      </WraperDiv>
 
       <ToastContainer autoClose={2500} />
     </Forma>

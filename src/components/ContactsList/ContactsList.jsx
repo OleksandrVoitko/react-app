@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-// import { useFetchContactsQuery } from '../../redux/contacts/contacts';
 import Contact from '../Contact/Contact';
-import { Wrapper, Li, Ul } from './ContactsList.styled';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import contactsSelector from '../../redux/contacts/contactsSelector';
 import contactsOperations from '../../redux/contacts/contactsOperations';
 import { Loader } from '../Loader/Loader';
+import { Wrapper, Li, Ul } from './ContactsList.styled';
 
 const ContactsList = ({ setNumberOfContacts, setNumberOfFilteredContacts }) => {
   const dispatch = useDispatch();

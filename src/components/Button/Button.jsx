@@ -5,7 +5,7 @@ const Button = ({
   disabled = false,
   selected = false,
   type = 'button',
-  padding = 10,
+  padding = 9,
   children,
 }) => {
   return (

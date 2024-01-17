@@ -1,11 +1,13 @@
-import LoginForm from "../../components/LoginForm";
+import LoginForm from '../../components/LoginForm';
+import Loyout from '../../components/Loyout';
+import Title from '../../components/Title';
 
 const Login = () => {
   return (
-    <div>
-      <h3>Login</h3>
+    <Loyout>
+      <Title>Login</Title>
       <LoginForm />
-    </div>
+    </Loyout>
   );
 };
 

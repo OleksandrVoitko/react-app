@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   > div {
@@ -16,6 +16,6 @@ export const Ul = styled.ul`
 
 export const Li = styled.li`
   & + & {
-    border-top: 1px solid #2f2f37;
+    border-top: 1px solid #4c527d;
   }
 `;

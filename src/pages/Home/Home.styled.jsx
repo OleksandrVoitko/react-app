@@ -8,10 +8,11 @@ export const Wraper = styled.div`
 `;
 
 export const BleackSpan = styled.span`
-  color: black;
+  color: #4c527d;
 `;
 
 export const Text = styled.p`
+  text-align: center;
   margin-bottom: 40px;
   color: #4c527d;
 `;

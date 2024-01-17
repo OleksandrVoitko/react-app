@@ -4,6 +4,6 @@ export const theme = {
   colors: { accentColor: 'orange' },
 };
 
-export const Theme = () => {
-  <ThemeProvider theme={theme}></ThemeProvider>;
+export const Theme = ({ children }) => {
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
