@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import contactsOperations from '../../redux/contacts/contactsOperations';
+import contactsSelector from '../../redux/contacts/contactsSelector';
 import Button from '../Button';
 
 import { Forma, Input, Label, Span, WraperDiv } from './ContactForm.styled';
@@ -13,6 +15,7 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
+  const contacts = useSelector(contactsSelector.getContacts);
 
   useEffect(() => {
     if (name && number) {
@@ -38,18 +41,31 @@ const ContactForm = () => {
       number,
     };
 
-    try {
-      await dispatch(contactsOperations.createContact(newContact));
+    // Search for duplicates by name and number
+    const nameInContacts = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+    const numberInContacts = contacts.find(
+      contact => contact.number === number,
+    );
 
-      toast.success(`Contact: ${name} - added!`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      setName('');
-      setNumber('');
-    } catch (error) {
-      toast.error(error.message, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+    // Sending a new contact after verification
+    if (!nameInContacts && !numberInContacts) {
+      try {
+        await dispatch(contactsOperations.createContact(newContact));
+
+        toast.success(` ${name} - added.`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        setName('');
+        setNumber('');
+      } catch (error) {
+        toast.error(error.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } else {
+      toast.error(`${name} is already in contacts.`);
     }
   };
 

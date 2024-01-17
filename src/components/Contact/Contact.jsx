@@ -12,7 +12,7 @@ const Contact = ({ contact }) => {
   const hadleClick = async id => {
     try {
       await dispatch(contactsOperations.deleteContact(id));
-      toast.success(`Contact: ${contact.name} - deleted!`);
+      toast.success(`${contact.name} - deleted.`);
     } catch (error) {
       toast.error(error.message);
     }
