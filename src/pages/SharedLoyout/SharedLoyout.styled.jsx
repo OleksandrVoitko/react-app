@@ -34,9 +34,21 @@ export const NavigationLogo = styled(NavLink)`
 export const Logo = styled.p`
   font-weight: 700;
   margin: 0;
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
   > span {
     color: orangered;
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+
+      transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
   }
 `;
 
@@ -47,7 +59,9 @@ export const NavigationLink = styled(NavLink)`
   color: black;
   font-weight: 500;
 
-  &.active {
+  &.active,
+  &:hover,
+  &:focus {
     color: orangered;
     /* background-color: orangered; */
   }

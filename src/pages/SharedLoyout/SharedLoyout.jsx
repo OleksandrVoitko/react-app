@@ -1,6 +1,11 @@
-// import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-// import { TailSpin } from 'react-loader-spinner';
+import { useSelector } from 'react-redux';
+import routes from '../../routes';
+
+import authSelectors from '../../redux/auth/authSelectors';
+import UserMenu from '../../components/UserMenu';
+import AppFooter from '../../components/AppFooter/AppFooter';
+
 import {
   Container,
   Header,
@@ -8,11 +13,6 @@ import {
   NavigationLink,
   NavigationLogo,
 } from './SharedLoyout.styled';
-import UserMenu from '../../components/UserMenu';
-import { useSelector } from 'react-redux';
-import authSelectors from '../../redux/auth/authSelectors';
-import routes from '../../routes';
-// import { NavLink } from 'react-router-dom';
 
 const SharedLoyout = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggetIn);
@@ -23,10 +23,9 @@ const SharedLoyout = () => {
         <nav>
           <NavigationLogo to={routes.home}>
             <Logo>
-              <span>Phone</span>book
+              <span>Phone</span>Book
             </Logo>
           </NavigationLogo>
-          {/* <NavigationLink to={routes.contacts}>Contacts</NavigationLink> */}
           {isLoggedIn && (
             <NavigationLink to={routes.contacts}>Contacts</NavigationLink>
           )}
@@ -42,11 +41,7 @@ const SharedLoyout = () => {
         )}
       </Header>
       <Outlet />
-      {/* <Suspense
-        fallback={<TailSpin color="orangered" height={53} width={53} />}
-      >
-        <Outlet />
-      </Suspense> */}
+      <AppFooter />
     </Container>
   );
 };

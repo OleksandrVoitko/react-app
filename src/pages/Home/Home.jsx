@@ -1,14 +1,23 @@
-// import { useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-// import { contactsOperations } from '../../redux/phoneBook';
+import { NavLink } from 'react-router-dom';
+import Button from '../../components/Button';
+import Title from '../../components/Title';
+import routes from '../../routes';
+import { BleackSpan, Icon, IconWraper, Text, Wraper } from './Home.styled';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <button>Try now</button>
-    </div>
+    <Wraper>
+      <Title>
+        Phone<BleackSpan>Book</BleackSpan>
+      </Title>
+      <IconWraper>
+        <Icon />
+      </IconWraper>
+      <Text>Fast, Secure and Mobile Friendly React Application</Text>
+      <NavLink to={routes.contacts}>
+        <Button selected={true}>Try it now</Button>
+      </NavLink>
+    </Wraper>
   );
 };
 
