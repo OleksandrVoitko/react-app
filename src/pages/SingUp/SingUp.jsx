@@ -1,6 +1,6 @@
 import Loyout from '../../components/Loyout';
-import SingUpForm from '../../components/SingUpForm';
 import Title from '../../components/Title';
+import SingUpForm from '../../components/SingUpForm';
 
 const SingUp = () => {
   return (

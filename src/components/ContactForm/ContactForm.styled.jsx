@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const Forma = styled.form`
-  width: 320px;
+  width: 100%;
   margin: 0 auto 15px;
-  padding: 15px;
 
   display: flex;
   justify-content: center;
@@ -28,6 +27,10 @@ export const Label = styled.label`
   margin-top: 15px;
 
   color: #4c527d;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 15px;
+  }
 `;
 
 export const Span = styled.span`
@@ -36,7 +39,9 @@ export const Span = styled.span`
 `;
 
 export const Input = styled.input`
-  width: 90%;
+  box-sizing: border-box;
+
+  width: 100%;
   padding: 11px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Forma = styled.form`
-  width: 320px;
+  width: 280px;
   margin: 0px auto 15px;
-  padding: 15px;
+
   border: 1px solid #d4d4d4;
   border-radius: 4px;
 
@@ -16,7 +16,7 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 15px;
+  margin: 15px;
 
   color: #333232;
 `;
@@ -42,4 +42,5 @@ export const Input = styled.input`
 
 export const WraperDiv = styled.div`
   text-align: center;
+  margin-bottom: 15px;
 `;

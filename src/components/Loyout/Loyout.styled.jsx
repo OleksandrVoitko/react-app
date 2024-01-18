@@ -5,6 +5,6 @@ export const Main = styled.main`
   flex-direction: column;
   align-items: stretch;
   max-width: 800px;
-  margin: 0 auto;
-  padding: 15px;
+  margin: 15px auto 0;
+  /* padding: 15px; */
 `;

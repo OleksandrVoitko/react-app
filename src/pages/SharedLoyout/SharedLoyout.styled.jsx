@@ -2,33 +2,48 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 16px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px;
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 300px;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    width: 750px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 1200px;
+  }
 `;
 
 export const Header = styled.header`
+  max-width: 960px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+  margin: 0 auto;
 
-  margin: 10px;
+  padding: 20px;
   border-bottom: 1px solid #4c527d;
 
   @media screen and (min-width: 767px) {
     flex-direction: row;
 
-    padding: 0;
+    padding: 10px;
   }
 
   > nav {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-  }
-  > div {
-    margin-bottom: 10px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 20px;
+    }
   }
 `;
 
