@@ -12,10 +12,13 @@ const Home = () => {
         <Title>
           Phone<BleackSpan>Book</BleackSpan>
         </Title>
+
         <IconWraper>
           <Icon />
         </IconWraper>
+
         <Text>Fast, Secure and Mobile Friendly React Application</Text>
+
         <NavLink to={routes.contacts}>
           <Button selected={true}>Try it now</Button>
         </NavLink>
