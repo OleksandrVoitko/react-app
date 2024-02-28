@@ -4,6 +4,7 @@ import contactsOperations from './contactsOperations';
 const initialState = {
   contacts: [],
   isLoading: false,
+  isEditing: false,
   error: null,
 };
 

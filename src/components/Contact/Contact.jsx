@@ -18,12 +18,16 @@ const Contact = ({ contact }) => {
     }
   };
 
+  const handleClickEdit = id => {
+    console.log(`Editing - ${id}`);
+  };
+
   return (
     <DivWrapper>
       <PText>
         {contact.name}: {contact.number}
       </PText>
-      <ButtonEdit>
+      <ButtonEdit onClick={() => handleClickEdit(contact.id)}>
         <MdEdit size={24} />
       </ButtonEdit>
       <Button onClick={() => hadleClick(contact.id)}>
