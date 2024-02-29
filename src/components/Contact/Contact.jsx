@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import contactsOperations from '../../redux/contacts/contactsOperations';
 import { Button, ButtonEdit, DivWrapper, PText } from './Contacts.styled';
+import { openModal } from '../../redux/editing/editingSlice';
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Contact = ({ contact }) => {
 
   const handleClickEdit = id => {
     console.log(`Editing - ${id}`);
+    dispatch(openModal());
   };
 
   return (
