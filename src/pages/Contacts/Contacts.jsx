@@ -6,6 +6,7 @@ import ContactCounter from '../../components/ContactCounter/ContactCounter';
 import Filter from '../../components/Filter/Filter';
 import ContactsList from '../../components/ContactsList';
 import EditModal from '../../components/EditModal/EditModal';
+import EditForm from '../../components/EditForm';
 
 const Contacts = () => {
   const [numberOfContacts, setNumberOfContacts] = useState(0);
@@ -23,7 +24,9 @@ const Contacts = () => {
         <Filter setIsFiltered={setIsFiltered}></Filter>
       </Bar>
       <ContactForm />
-      <EditModal></EditModal>
+      <EditModal>
+        <EditForm></EditForm>
+      </EditModal>
       <ContactsList
         setNumberOfContacts={setNumberOfContacts}
         setNumberOfFilteredContacts={setNumberOfFilteredContacts}
