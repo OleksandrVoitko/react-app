@@ -39,8 +39,6 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 });
 
 // POST @ /users/logout
-//
-//
 // headers: Autorization: Bearer token
 // after a successful exit, we delete the token from the HTTP-header
 const logOut = createAsyncThunk('auth/logout', async credentials => {
