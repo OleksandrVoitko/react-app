@@ -18,7 +18,7 @@
 }
 @media screen and (max-width: 767px) {
   .editModalContent {
-    min-width: 300px;
+    min-width: 260px;
   }
 }
 @media screen and (min-width: 1200px) {
