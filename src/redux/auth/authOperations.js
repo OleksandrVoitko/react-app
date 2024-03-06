@@ -13,6 +13,7 @@ const token = {
 };
 
 // POST @ /users/signup
+//
 // body: {name, email, password}
 // after successful registration, - add the token to the HTTP-header
 const register = createAsyncThunk('auth/register', async credentials => {
@@ -26,6 +27,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
 });
 
 // POST @ /users/login
+//
 // body: {email, password}
 // after successful registration, - add the token to the HTTP-header
 const logIn = createAsyncThunk('auth/login', async credentials => {
@@ -39,6 +41,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 });
 
 // POST @ /users/logout
+//
 // headers: Autorization: Bearer token
 // after a successful exit, we delete the token from the HTTP-header
 const logOut = createAsyncThunk('auth/logout', async credentials => {
@@ -51,6 +54,7 @@ const logOut = createAsyncThunk('auth/logout', async credentials => {
 });
 
 // GET @ /user/current
+//
 // headers: Autorization: Bearer token
 // 1. We take the token from the state through getState
 // 2. If there is no token - exit
