@@ -15,6 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   //   <BrowserRouter basename="/react-app/">
+  //
   <BrowserRouter>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
