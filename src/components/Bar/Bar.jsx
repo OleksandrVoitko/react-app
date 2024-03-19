@@ -1,4 +1,4 @@
-import { Header, Section, TitleH2 } from "./Bar.styled";
+import { Header, Section, TitleH2 } from './Bar.styled';
 
 const Bar = ({ barName, filterName, children }) => {
   return (

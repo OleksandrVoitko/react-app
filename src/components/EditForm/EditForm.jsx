@@ -1,4 +1,3 @@
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import Button from '../Button';
@@ -34,10 +33,8 @@ const EditForm = () => {
         />
       </Label>
       <WraperDiv>
-        <Button type="submit">Add</Button>
+        <Button type="submit">Edit</Button>
       </WraperDiv>
-
-      <ToastContainer autoClose={2500} />
     </Forma>
   );
 };

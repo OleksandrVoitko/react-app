@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import contactsOperations from '../../redux/contacts/contactsOperations';
 import { Button, ButtonEdit, DivWrapper, PText } from './Contacts.styled';
 import { openModal } from '../../redux/editing/editingSlice';
+import Confirmation from '../Confirmation';
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ const Contact = ({ contact }) => {
   };
 
   const handleClickEdit = id => {
-    console.log(`Editing - ${id}`);
     dispatch(openModal());
   };
 
@@ -32,9 +32,14 @@ const Contact = ({ contact }) => {
       <ButtonEdit onClick={() => handleClickEdit(contact.id)}>
         <MdEdit size={24} />
       </ButtonEdit>
-      <Button onClick={() => hadleClick(contact.id)}>
-        <MdClose size={24} />
-      </Button>
+      <Confirmation
+        title="Are you sure you want to delete?"
+        confirm={() => hadleClick(contact.id)}
+      >
+        <Button>
+          <MdClose size={24} />
+        </Button>
+      </Confirmation>
     </DivWrapper>
   );
 };
