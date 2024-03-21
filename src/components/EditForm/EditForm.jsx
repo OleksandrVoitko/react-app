@@ -2,18 +2,37 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import { useSelector } from 'react-redux';
 import editingSelector from '../../redux/editing/editingSelector';
+import contactsSelector from '../../redux/contacts/contactsSelector';
 
 import Button from '../Button';
 import { Forma, Input, Label, Span, WraperDiv } from './EditForm.styled';
 import { useState, useEffect } from 'react';
+import contactsOperations from '../../redux/contacts/contactsOperations';
+import { useDispatch } from 'react-redux';
+
+import { toast } from 'react-toastify';
+import { closeModal } from '../../redux/editing/editingSlice';
 
 const EditForm = () => {
+  const dispatch = useDispatch();
+
+  const contacts = useSelector(contactsSelector.getContacts);
+
   const id = useSelector(editingSelector.getIdEditing);
   const nameEditing = useSelector(editingSelector.getNameEditing);
   const numberEditing = useSelector(editingSelector.getNumberEditing);
 
   const [name, setName] = useState(nameEditing);
   const [number, setNumber] = useState(numberEditing);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (name !== nameEditing || number !== numberEditing) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  }, [name, number]);
 
   useEffect(() => {
     setName(nameEditing);
@@ -28,9 +47,51 @@ const EditForm = () => {
     }
   };
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    const updatingContact = {
+      id,
+      name,
+      number,
+    };
+
+    // Search for duplicates by name if name edited
+    let nameInContacts = false;
+    if (name !== nameEditing) {
+      nameInContacts = contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase(),
+      );
+    }
+    // Search for duplicates by number if number edited
+    let numberInContacts = false;
+    if (number !== numberEditing) {
+      numberInContacts = contacts.find(contact => contact.number === number);
+    }
+
+    // Updating a new contact after verification
+    if (!nameInContacts && !numberInContacts) {
+      try {
+        await dispatch(contactsOperations.updateContact(updatingContact));
+
+        toast.success(` ${name} - edited.`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        setName('');
+        setNumber('');
+        dispatch(closeModal());
+      } catch (error) {
+        toast.error(error.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } else {
+      toast.error(`${name} is already in contacts.`);
+    }
+  };
+
   return (
-    // <Forma onSubmit={handleSubmit}>
-    <Forma>
+    <Forma onSubmit={handleSubmit}>
       <Label htmlFor="name">
         <Span>Name:</Span>
         <Input
@@ -57,7 +118,9 @@ const EditForm = () => {
         />
       </Label>
       <WraperDiv>
-        <Button type="submit">Edit</Button>
+        <Button type="submit" disabled={!visible}>
+          Edit
+        </Button>
       </WraperDiv>
     </Forma>
   );

@@ -50,6 +50,24 @@ const contactsSlice = createSlice({
       .addCase(contactsOperations.deleteContact.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload.message;
+      })
+      .addCase(contactsOperations.updateContact.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(contactsOperations.updateContact.fulfilled, (state, action) => {
+        state.contacts = state.contacts.map(contact => {
+          if (contact.id === action.payload.id) {
+            contact.name = action.payload.name;
+            contact.number = action.payload.number;
+          }
+          return contact;
+        });
+        state.isLoading = false;
+      })
+      .addCase(contactsOperations.updateContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload.message;
       });
   },
 });

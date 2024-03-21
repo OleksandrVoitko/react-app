@@ -31,5 +31,18 @@ const deleteContact = createAsyncThunk('contacts/del', async contactId => {
   }
 });
 
+// UPDATE @ /contacts
+const updateContact = createAsyncThunk('contacts/update', async contact => {
+  try {
+    const { data } = await axios.patch(`/contacts/${contact.id}`, {
+      name: contact.name,
+      number: contact.number,
+    });
+    return data;
+  } catch (error) {
+    return error;
+  }
+});
+
 // eslint-disable-next-line
-export default { fetchContacts, createContact, deleteContact };
+export default { fetchContacts, createContact, deleteContact, updateContact };
