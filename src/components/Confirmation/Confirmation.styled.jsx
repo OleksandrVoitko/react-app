@@ -1,11 +1,10 @@
 import { css } from '@emotion/css';
 
-const emotoin = css`
-  color: red;
-  background-color: gray;
+const customButton = css`
+  background-color: orangered;
   &:hover {
-    background-color: #000 !important;
+    background-color: #ff4400c1 !important;
   }
 `;
 
-export default { emotoin };
+export default { customButton };

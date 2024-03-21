@@ -1,4 +1,5 @@
 import { Popconfirm } from 'antd';
+import styles from './Confirmation.styled';
 
 const Confirmation = ({ title, cancel, confirm, children }) => {
   return (
@@ -8,10 +9,13 @@ const Confirmation = ({ title, cancel, confirm, children }) => {
       okText="Yes"
       onCancel={cancel}
       onConfirm={confirm}
-      // okButtonProps={{
-      //   className: `${styles.emotoin}`,
-      //   type: 'default',
-      // }}
+      okButtonProps={{
+        type: 'default',
+      }}
+      cancelButtonProps={{
+        className: `${styles.customButton}`,
+        type: 'primary',
+      }}
     >
       {children}
     </Popconfirm>

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import contactsOperations from '../../redux/contacts/contactsOperations';
 import { Button, ButtonEdit, DivWrapper, PText } from './Contacts.styled';
-import { openModal } from '../../redux/editing/editingSlice';
+import { openModal, addContactForEdit } from '../../redux/editing/editingSlice';
 import Confirmation from '../Confirmation';
 
 const Contact = ({ contact }) => {
@@ -20,8 +20,9 @@ const Contact = ({ contact }) => {
     }
   };
 
-  const handleClickEdit = id => {
+  const handleClickEdit = (id, name, number) => {
     dispatch(openModal());
+    dispatch(addContactForEdit(id, name, number));
   };
 
   return (
@@ -29,7 +30,11 @@ const Contact = ({ contact }) => {
       <PText>
         {contact.name}: {contact.number}
       </PText>
-      <ButtonEdit onClick={() => handleClickEdit(contact.id)}>
+      <ButtonEdit
+        onClick={() =>
+          handleClickEdit(contact.id, contact.name, contact.number)
+        }
+      >
         <MdEdit size={24} />
       </ButtonEdit>
       <Confirmation
